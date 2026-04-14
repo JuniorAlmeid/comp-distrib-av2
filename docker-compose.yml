@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # 1. Banco de Dados MySQL
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: userwp
+      MYSQL_PASSWORD: passwordwp
+    # NOTA: Não expomos a porta (ex: ports: - "3306:3306") para garantir que 
+    # a máquina hospedeira não acesse diretamente, apenas os contêineres.
+
+  # 2. Instâncias do WordPress
+  wordpress1:
+    image: wordpress:5.4.2-php7.2-apache
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: userwp
+      WORDPRESS_DB_PASSWORD: passwordwp
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./html:/var/www/html # Compartilha a pasta com a máquina hospedeira
+    depends_on:
+      - db
+    # Sem exposição de portas, acessível apenas na rede interna do Docker.
+
+  wordpress2:
+    image: wordpress:5.4.2-php7.2-apache
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: userwp
+      WORDPRESS_DB_PASSWORD: passwordwp
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./html:/var/www/html
+    depends_on:
+      - db
+
+  wordpress3:
+    image: wordpress:5.4.2-php7.2-apache
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: userwp
+      WORDPRESS_DB_PASSWORD: passwordwp
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./html:/var/www/html
+    depends_on:
+      - db
+
+  # 3. Balanceador de Carga Nginx
+  nginx:
+    image: nginx:1.19.0
+    ports:
+      - "80:80" # Único contêiner exposto para a máquina hospedeira
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Mapeia o arquivo de configuração
+      - ./html:/usr/share/nginx/html:ro       # Mapeia a mesma pasta do WP
+    depends_on:
+      - wordpress1
+      - wordpress2
+      - wordpress3
