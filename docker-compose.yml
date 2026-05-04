@@ -56,3 +56,15 @@ services:
       - wordpress1
       - wordpress2
       - wordpress3
+
+      # --- NOVO: CONTÊINER DO LOCUST ---
+  locust:
+    image: grubykarol/locust
+    ports:
+      - "8089:8089"
+    environment:
+      - ATTACKED_HOST=http://nginx 
+    volumes:
+      - ./locust:/locust 
+    depends_on:
+      - nginx
