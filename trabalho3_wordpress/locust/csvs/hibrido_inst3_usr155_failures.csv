@@ -1,0 +1,7 @@
+Method,Name,Error,Occurrences
+GET,/post-texto-400k/,500 Server Error: Internal Server Error for url: http://nginx/wp-admin/install.php,5
+GET,/post-texto-400k/,500 Server Error: Internal Server Error for url: http://nginx/post-texto-400k/,8
+GET,/post-imagem-300kb/,500 Server Error: Internal Server Error for url: http://nginx/post-imagem-300kb/,6
+GET,/post-imagem-300kb/,500 Server Error: Internal Server Error for url: http://nginx/wp-admin/install.php,6
+GET,/post-imagem-1mb/,500 Server Error: Internal Server Error for url: http://nginx/wp-admin/install.php,6
+GET,/post-imagem-1mb/,500 Server Error: Internal Server Error for url: http://nginx/post-imagem-1mb/,8

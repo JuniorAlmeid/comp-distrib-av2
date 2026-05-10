@@ -1,0 +1,2 @@
+Method,Name,Error,Occurrences
+GET,Extracao_Pesada,HTTPError('400 Client Error: BAD REQUEST for url: Extracao_Pesada'),125
