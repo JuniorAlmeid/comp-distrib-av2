@@ -18,13 +18,13 @@ O repositório está dividido em dois laboratórios independentes, orquestrados 
 │
 ├── 📁 trabalho3_wordpress/       # Análise de Escalabilidade Horizontal
 │   ├── 📁 html/                  # Arquivos estáticos e mídias dos testes
-│   ├── 📁 locust/                # Scripts do Locust e resultados brutos (.csv)
+│   ├── 📁 graficos_csvs/         # Gráficos, csvs e scripts do Locust
 │   ├── 🐳 docker-compose.yml     # Orquestração (Nginx, WP, MariaDB)
 │   ├── ⚙️ nginx.conf              # Configuração do Load Balancer (Round Robin)
 │   └── 📜 run_tests.sh           # Automação da matriz de testes (1, 2 e 3 instâncias)
 │
 └── 📁 trabalho4_links/           # Comparativo de Microsserviços e Cache
-    ├── 📁 locust/                # Script de ataque e gerador de gráficos
+    ├── 📁 graficos_csvs/         # Gráficos, csvs e scripts do Locust
     ├── 📁 python_api/            # API customizada do Link Extractor em Python (Flask)
     ├── 📁 ruby_api/              # API customizada do Link Extractor em Ruby (Sinatra)
     ├── 🐳 docker-compose.yml     # Orquestração gerada dinamicamente pelo script
